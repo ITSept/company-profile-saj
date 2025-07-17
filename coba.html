@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navbar Static HTML</title>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.11.1/dist/cdn.min.js" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav x-data="{ open: false }" class="bg-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="/" class="flex items-center space-x-2 py-3">
+          <img class="block h-10 md:h-12 w-auto transition-transform duration-300 ease-in-out hover:scale-105"
+               src="path/to/logo.png"
+               alt="PT SAJ" />
+        </a>
+      </div>
+      <!-- Menu Desktop -->
+      <div class="flex-grow hidden md:flex items-center justify-center space-x-6 lg:space-x-8 px-4">
+        <a href="/" class="text-md text-gray-600 hover:text-gray-900">Home</a>
+        <a href="/about" class="text-md text-gray-600 hover:text-gray-900">About</a>
+
+        <!-- Dropdown Product -->
+        <div class="relative">
+          <button
+            class="flex items-center text-md font-medium text-gray-600 hover:text-gray-900 focus:outline-none transition duration-150 ease-in-out">
+            <span>Product</span>
+            <svg class="fill-current h-4 w-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 …" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <!-- Dropdown Content -->
+          <div class="absolute mt-2 w-48 bg-white shadow-lg rounded-md py-1 z-50 hidden group-hover:block">
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Wecare International</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Wecare Adult</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mamy love</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Top Adult Diapers</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Top Adult Pants</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Top Underpads</a>
+          </div>
+        </div>
+
+        <a href="/machine-technology" class="text-md text-gray-600 hover:text-gray-900">Machine &amp; Technology</a>
+        <a href="/careers" class="text-md text-gray-600 hover:text-gray-900">Careers</a>
+        <a href="/contact" class="text-md text-gray-600 hover:text-gray-900">Contact</a>
+      </div>
+      <!-- Auth/Login & Mobile Hamburger -->
+      <div class="flex items-center space-x-4 md:space-x-0">
+        <div class="hidden md:flex md:items-center">
+          <!-- Jika belum login -->
+          <a href="/login"
+             class="inline-block px-5 py-2 text-sm font-semibold text-white bg-orange-500 border border-orange-600 rounded-full hover:bg-orange-600 transition duration-300">
+            Log In
+          </a>
+        </div>
+        <!-- Hamburger -->
+        <div class="-mr-2 flex items-center md:hidden">
+          <button @click="open = !open"
+                  class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 transition duration-150 ease-in-out focus:outline-none">
+            <svg class="h-8 w-8" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+              <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16" />
+              <path :class="{ 'hidden': !open, 'inline-flex': open }" class="hidden"
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div x-show="open"
+       x-transition:enter="transition ease-out duration-200"
+       x-transition:enter-start="opacity-0 scale-95"
+       x-transition:enter-end="opacity-100 scale-100"
+       x-transition:leave="transition ease-in duration-75"
+       x-transition:leave-start="opacity-100 scale-100"
+       x-transition:leave-end="opacity-0 scale-95"
+       class="md:hidden bg-white border-t border-gray-200 shadow-md pb-3">
+    <div class="pt-2 pb-3 space-y-1">
+      <a href="/" class="block px-4 py-2 text-md text-gray-600 hover:text-gray-800">Home</a>
+      <a href="/about" class="block px-4 py-2 text-md text-gray-600 hover:text-gray-800">About</a>
+
+      <!-- Mobile Product -->
+      <div x-data="{ openProducts: false }">
+        <button @click="openProducts = !openProducts"
+                class="flex items-center justify-between w-full px-4 py-2 text-base font-medium text-gray-600 hover:text-gray-800 focus:outline-none">
+          <span>Product</span>
+          <svg class="ml-1 h-4 w-4 transform"
+               :class="{ 'rotate-180': openProducts, 'rotate-0': !openProducts }"
+               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 …" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <div x-show="openProducts" class="mt-1 pl-8 space-y-1">
+          <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-50">Wecare International</a>
+          <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-50">Wecare Adult</a>
+          <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-50">Mamy love</a>
+          <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-50">Top Adult Diapers</a>
+          <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-50">Top Adult Pants</a>
+          <a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-50">Top Underpads</a>
+        </div>
+      </div>
+
+      <a href="/machine-technology" class="block px-4 py-2 text-md text-gray-600 hover:text-gray-800">Machine &amp; Technology</a>
+      <a href="/careers" class="block px-4 py-2 text-md text-gray-600 hover:text-gray-800">Careers</a>
+      <a href="/contact" class="block px-4 py-2 text-md text-gray-600 hover:text-gray-800">Contact</a>
+    </div>
+    <div class="pt-4 pb-1 border-t border-gray-200">
+      <a href="/login" class="block w-full px-4 py-2 text-base text-gray-700 hover:bg-gray-100">Log in</a>
+      <a href="/register" class="block w-full px-4 py-2 text-base text-gray-700 hover:bg-gray-100">Register</a>
+    </div>
+  </div>
+</nav>
+
+</body>
+</html>

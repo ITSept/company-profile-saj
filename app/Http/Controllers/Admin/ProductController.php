@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+
 class ProductController extends Controller
 {
     /**
@@ -17,6 +18,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
         return view('admin.products.index', compact('products'));
+
     }
 
     /**
@@ -59,7 +61,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        // Opsional
+        //
     }
 
     /**

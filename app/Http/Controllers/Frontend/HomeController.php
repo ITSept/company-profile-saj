@@ -11,10 +11,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Ambil beberapa data terbaru untuk homepage, misalnya 3 produk dan 3 lowongan terbaru
-        $latestProducts = Product::latest()->take(3)->get();
-        $latestJobVacancies = JobVacancy::latest()->take(3)->get();
+        $products = Product::all();           // Ambil semua produk
+        $jobVacancies = JobVacancy::all();   // Ambil semua lowongan kerja
 
-        return view('frontend.home', compact('latestProducts', 'latestJobVacancies'));
+        return view('frontend.home', compact('products', 'jobVacancies'));
     }
 }

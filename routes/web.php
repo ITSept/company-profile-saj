@@ -11,6 +11,10 @@ use App\Http\Controllers\Frontend\JobVacancyPageController; // <-- Tambahkan
 // --- Rute Frontend (Public) ---
 // Rute Homepage
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::view('/about', 'frontend.about')->name('about');
+
+Route::get('/products', [ProductPageController::class, 'index'])->name('products.index');
+Route::get('/products/{product}', [ProductPageController::class, 'show'])->name('products.show');
 
 // Rute Daftar Produk
 Route::get('/products', [ProductPageController::class, 'index'])->name('products.index');
