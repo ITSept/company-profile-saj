@@ -15,5 +15,7 @@ class HomeController extends Controller
         $jobVacancies = JobVacancy::all();   // Ambil semua lowongan kerja
 
         return view('frontend.home', compact('products', 'jobVacancies'));
+
     }
+
 }
